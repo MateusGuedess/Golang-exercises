@@ -32,13 +32,7 @@ func (s Subtracao) String() string {
 	return fmt.Sprintf("%d - %d", s.operando1, s.operando2)
 }
 
-func main() {
-	operacoes := make([]Operacao, 4)
-
-	operacoes[0] = Soma{10, 20}
-	operacoes[1] = Subtracao{30, 15}
-	operacoes[2] = Subtracao{10, 50}
-	operacoes[3] = Soma{5, 2}
+func acumular(operacoes []Operacao) int {
 
 	acumulador := 0
 
@@ -48,5 +42,17 @@ func main() {
 		acumulador += valor
 	}
 
-	fmt.Println("Valor acumulado = ", acumulador)
+	return acumulador
+}
+
+func main() {
+	operacoes := make([]Operacao, 4)
+
+	operacoes[0] = Soma{10, 20}
+	operacoes[1] = Subtracao{30, 15}
+	operacoes[2] = Subtracao{10, 50}
+	operacoes[3] = Soma{5, 2}
+
+
+	fmt.Println("Valor acumulado = ", acumular(operacoes))
 }
