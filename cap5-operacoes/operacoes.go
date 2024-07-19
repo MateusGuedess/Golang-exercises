@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Operacao interface {
 	Calcular() int
@@ -15,10 +18,15 @@ type Subtracao struct {
 	operando1, operando2 int
 }
 
+type Idade struct {
+	anoNascimento int
+}
+
 
 func (s Soma) Calcular() int {
 	return s.operando1 + s.operando2
 }
+
 
 func (s Soma) String() string {
 	return fmt.Sprintf("%d + %d", s.operando1, s.operando2)
@@ -45,6 +53,14 @@ func acumular(operacoes []Operacao) int {
 	return acumulador
 }
 
+func (i Idade) Calcular() int {
+	return time.Now().Year() - i.anoNascimento
+}
+
+func (i Idade) String() string {
+	return fmt.Sprintf("Idade desde %d", i.anoNascimento)
+}
+
 func main() {
 	operacoes := make([]Operacao, 4)
 
@@ -55,4 +71,13 @@ func main() {
 
 
 	fmt.Println("Valor acumulado = ", acumular(operacoes))
+
+	idade := make([]Operacao, 3)
+
+	idade[0] = Idade{1969}
+	idade[1] = Idade{1977}
+	idade[2] = Idade{2001}
+
+	fmt.Println("Valor acumulado = ", acumular(idade))
+
 }
