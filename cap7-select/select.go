@@ -28,6 +28,8 @@ func main() {
 				fmt.Println("Fim do processamento")
 		}
 	}
+
+	fmt.Printf("Impares: [%v] | Pares: [%v]", impares, pares)
 }
 
 
